@@ -20,16 +20,16 @@
 ##
 golem::fill_desc(
   pkg_name = "tecanR", # The Name of the package containing the App
-  pkg_title = "PKG_TITLE", # The Title of the package containing the App
-  pkg_description = "PKG_DESC.", # The Description of the package containing the App
-  author_first_name = "AUTHOR_FIRST", # Your First Name
-  author_last_name = "AUTHOR_LAST", # Your Last Name
-  author_email = "AUTHOR@MAIL.COM", # Your Email
+  pkg_title = "Shiny application for Tecan data analysis", # The Title of the package containing the App
+  pkg_description = "Contains functions for reading and plotting tecan data, user use them separately or by the shiny application.", # The Description of the package containing the App
+  author_first_name = "Agnieszka", # Your First Name
+  author_last_name = "Strzałka", # Your Last Name
+  author_email = "the.larch19@gmail.com", # Your Email
   repo_url = NULL # The URL of the GitHub Repo (optional)
 )
 
 ## Set {golem} options ----
-golem::set_golem_options()
+golem::set_golem_options(golem_version = '0.1')
 
 ## Create Common Files ----
 ## See ?usethis for more information
