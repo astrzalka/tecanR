@@ -3,6 +3,7 @@
 #' @param request Internal parameter for `{shiny}`.
 #'     DO NOT REMOVE.
 #' @import shiny
+#' @import magrittr
 #' @noRd
 app_ui <- function(request) {
   tagList(
@@ -10,7 +11,19 @@ app_ui <- function(request) {
     golem_add_external_resources(),
     # Your application UI logic
     fluidPage(
-      h1("tecanR")
+      titlePanel("Tecan Plate Reader Data Analysis"),
+      sidebarLayout(
+        sidebarPanel(
+          fileInput("plate_map_file", "Upload Plate Map"),
+          fileInput("tecan_file", "Upload Tecan File")
+        ),
+        mainPanel(tabsetPanel(
+          tabPanel('plot all', plotOutput("plot_1")),
+          tabPanel('plot combined', plotOutput("plot_2"))
+        )
+
+        )
+      )
     )
   )
 }
