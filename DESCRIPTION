@@ -1,0 +1,13 @@
+Package: tecanR
+Title: Shiny application for Tecan data analysis
+Version: 0.0.0.9000
+Authors@R: person('Agnieszka', 'Strzałka', email = 'the.larch19@gmail.com', role = c('cre', 'aut'))
+Description: Contains functions for reading and plotting tecan data, user use them separately or by the shiny application.
+License: What license is it under?
+Imports: 
+    config (>= 0.3.1),
+    golem (>= 0.3.3),
+    shiny (>= 1.7.2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1
