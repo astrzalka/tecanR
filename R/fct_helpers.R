@@ -304,7 +304,8 @@ read_tecan_sheet_Martyna <- function(path, sheet){
 
   # combine datasets
   od_table %>% dplyr::bind_cols(lumi_table[,2:3]) %>%
-    dplyr::mutate(time = as.numeric(time)) -> tecan_results
+    dplyr::mutate(time = as.numeric(time)) %>%
+    dplyr::rename(time_od = time)-> tecan_results
 
   return(tecan_results)
 }
