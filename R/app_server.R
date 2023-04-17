@@ -48,7 +48,13 @@ app_server <- function(input, output, session) {
     }
 
     data %>% dplyr::filter(strain %in% input$strains_ui) -> data
+     if(!is.na(input$filter_time)){
+       data %>% dplyr::filter(time/60 <= input$filter_time) -> data
+     }
 
+    if(!is.na(input$filter_value)){
+      data %>% dplyr::filter(value <= input$filter_value) -> data
+    }
     return(data)
   })
 
@@ -57,9 +63,12 @@ app_server <- function(input, output, session) {
    data <- data_final()
 
     data %>%
-      ggplot2::ggplot(ggplot2::aes(x = time, y = value, color = factor(rep)))+
+      ggplot2::ggplot(ggplot2::aes(x = time/60, y = value, color = factor(rep)))+
       ggplot2::geom_line()+
-      ggplot2::facet_wrap(~strain) -> p
+      ggplot2::facet_wrap(~strain)+
+      ggplot2::theme_minimal()+
+      ggplot2::xlab('Time [min]')+
+      ggplot2::theme(legend.position = 'bottom')-> p
 
     return(p)
   })
@@ -74,8 +83,11 @@ app_server <- function(input, output, session) {
       dplyr::group_by(strain, time) %>%
       dplyr::summarise(mean_value = mean(value)) %>%
       #tidyr::separate(strain, into = c('strain2', 'cond'), sep = '_', remove = FALSE) %>%
-      ggplot2::ggplot(ggplot2::aes(x = time, y = mean_value, color = strain))+
-      ggplot2::geom_line()-> p
+      ggplot2::ggplot(ggplot2::aes(x = time/60, y = mean_value, color = strain))+
+      ggplot2::geom_line()+
+      ggplot2::theme_minimal()+
+      ggplot2::xlab('Time [min]')+
+      ggplot2::theme(legend.position = 'bottom')-> p
 
     return(p)
   })

@@ -34,6 +34,9 @@ app_ui <- function(request) {
         )
         ),
         column(2, style = "background-color: #f8f9fa;",
+               h5('Filters:'),
+               numericInput('filter_time', 'Maximum time', value = NA, step = 50),
+               numericInput('filter_value', 'Maximum value of OD/luminescence/fluorescence', value = NA, step = 100),
                uiOutput("strains_ui")
 
         )
